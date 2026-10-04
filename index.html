@@ -125,14 +125,6 @@
     border-radius: 999px;
   }
 
-  /* PESTAÑAS DE SECCIÓN (nivel Pastoral) */
-  .section-tabs {
-    display: flex;
-    gap: 0.6rem;
-    margin: 1.6rem auto 0;
-    max-width: 460px;
-  }
-
   .section-hr {
     height: 1px;
     background: var(--border);
@@ -142,34 +134,7 @@
   }
   .section-hr.wide { max-width: 100%; }
 
-  .section-tab {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-    padding: 0.7rem 0.9rem;
-    border-radius: 12px;
-    border: 2px solid var(--border);
-    background: var(--card);
-    color: var(--text-muted);
-    font-family: 'Fira Sans', sans-serif;
-    font-size: 0.92rem;
-    font-weight: 700;
-    cursor: pointer;
-  }
-
-  .section-tab.active {
-    background: var(--azul);
-    border-color: var(--azul);
-    color: #fff;
-    box-shadow: 0 4px 12px rgba(0, 154, 187, 0.3);
-  }
-
-  .section-panel { display: none; }
-  .section-panel.active { display: block; }
-
-  /* SUBPESTAÑAS (dentro de BBDD) */
+  /* SUBPESTAÑAS (Calendario / Guías) */
   .subtabs {
     display: flex;
     gap: 0.6rem;
@@ -205,24 +170,6 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* ==== LEMA DEL CURSO (sección propia) ==== */
-  .lema-card {
-    max-width: 620px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .lema-card .detail-tag {
-    display: inline-block;
-    margin-bottom: 0.9rem;
-  }
-  .lema-card h2 {
-    color: var(--azul);
-    font-size: 1.5rem;
-    margin-bottom: 0.4rem;
-  }
-  .lema-card .modal-lema-subtitle { text-align: center; }
-  .lema-card .modal-lema-desc { text-align: left; }
-  .lema-card .resource-btn { display: inline-flex; margin-top: 0.4rem; }
 
   /* ==== CALENDARIO (igual que en la web de familias) ==== */
   .picker-label {
@@ -458,8 +405,6 @@
 
   .empty-state { text-align: center; padding: 2.5rem 1rem; color: var(--text-muted); }
 
-  .modal-lema-subtitle { font-size: 1.05rem; font-weight: 600; color: var(--azul); font-style: italic; margin-bottom: 0.8rem; line-height: 1.35; }
-  .modal-lema-desc { font-size: 0.93rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 1.4rem; }
 
   /* ==== GUÍAS ==== */
   .role-tabs {
@@ -663,7 +608,7 @@
     h1 { font-size: 1.55rem; }
     section.step-section { padding: 1.3rem 1.15rem; }
     .path-list .stage { min-width: 100%; }
-    .role-tabs, .section-tabs, .subtabs { flex-direction: column; }
+    .role-tabs, .subtabs { flex-direction: column; }
     .cal-day { font-size: 0.8rem; }
   }
 </style>
@@ -765,35 +710,12 @@
       </g>
     </svg>
     <span class="eyebrow">Equipo de Pastoral · Nervión</span>
-    <h1>Pastoral</h1>
-    <p class="subtitle">Recursos para el profesorado</p>
+    <h1>Buenos Días</h1>
+    <p class="subtitle">Calendario y guías para el profesorado</p>
     <div class="divider"></div>
   </header>
 
-  <div class="section-tabs">
-    <button class="section-tab active" id="sec-lema" onclick="showSection('lema', this)">✨ Lema del Curso</button>
-    <button class="section-tab" id="sec-buenosdias" onclick="showSection('buenosdias', this)">☀️ Buenos Días</button>
-  </div>
-
-  <div class="section-hr"></div>
-
-  <!-- ============ SECCIÓN: LEMA DEL CURSO ============ -->
-  <div class="section-panel active" id="section-lema">
-    <div class="lema-card">
-      <div class="detail-tag" style="background: rgba(180, 190, 0, 0.18); color: var(--verde-oscuro);">Curso 2026/2027</div>
-      <h2>Aquí y ahora</h2>
-      <div class="modal-lema-subtitle">«El Reino de Dios está en medio de nosotros» (Lc 17, 21)</div>
-      <p class="modal-lema-desc">
-        Aquí encontrarás el cartel oficial, lema e himno anual, así como recursos comunes de pastoral para todas las casas de las Salesianas de España.
-      </p>
-      <a href="https://salesianas.org/aqui-y-ahora/" target="_blank" class="resource-btn" style="background: var(--verde);">
-        📁 Aquí y ahora - Recursos pastorales
-      </a>
-    </div>
-  </div>
-
-  <!-- ============ SECCIÓN: BUENOS DÍAS ============ -->
-  <div class="section-panel" id="section-buenosdias">
+  <div id="section-buenosdias">
 
     <div class="subtabs">
       <button class="subtab active" id="subtab-calendario" onclick="showSub('calendario', this)">📅 Calendario</button>
@@ -1035,14 +957,7 @@
 </div>
 
 <script>
-  // ===== NAVEGACIÓN: SECCIONES / SUBPESTAÑAS / ROLES =====
-  function showSection(section, btn) {
-    document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.section-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('section-' + section).classList.add('active');
-    btn.classList.add('active');
-  }
-
+  // ===== NAVEGACIÓN: SUBPESTAÑAS / ROLES =====
   function showSub(sub, btn) {
     document.querySelectorAll('.sub-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.subtab').forEach(t => t.classList.remove('active'));
