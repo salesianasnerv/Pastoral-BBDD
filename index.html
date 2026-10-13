@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pastoral | Escuelas Salesianas María Auxiliadora (Nervión - Sevilla)</title>
-<meta property="og:title" content="Pastoral | Escuelas Salesianas María Auxiliadora (Nervión - Sevilla)">
+<title>Buenos días | Escuelas Salesianas María Auxiliadora · Nervión (Sevilla)</title>
+<meta property="og:title" content="Buenos días | Escuelas Salesianas María Auxiliadora · Nervión (Sevilla)">
 <meta property="og:type" content="website">
 <meta name="description" content="Calendario y guías de Buenos Días para el equipo de Pastoral y el profesorado de Salesianas Nervión">
 
@@ -14,7 +14,7 @@
 <link rel="apple-touch-icon" href="icon-profesores-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Pastoral">
+<meta name="apple-mobile-web-app-title" content="Buenos Días">
 <link rel="icon" href="favicon-profesores.png">
 
 <style>
@@ -977,17 +977,6 @@
   // ===== CALENDARIO (misma lógica que la web de familias) =====
   const SHEETS_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSLmMNOFD1cHKXLC3Zwi2Yu6KqVJKlYZPh-B-l_TLLnJWpk9OzjHcrdrdFsi9qnIyu7V72O610nY3wx/pub?output=csv";
 
-  const citasSalesianas = [
-    "«La santidad consiste en estar siempre alegres.» — San Juan Bosco",
-    "«Haced todo por amor, nada por la fuerza.» — San Francisco de Sales",
-    "«Estar alegres, hacer el bien y dejar cantar a los gorriones.» — San Juan Bosco",
-    "«Cada puntada sea un acto de amor a Dios.» — Santa María Mazzarello",
-    "«No os desaniméis jamás; Dios proveerá.» — Santa María Mazzarello",
-    "«Basta que seáis jóvenes para que os ame.» — San Juan Bosco",
-    "«Haz que cada uno de los que te traten se haga tu amigo.» — San Juan Bosco",
-    "«Sembrad con alegría y recogeréis con abundancia.» — Santa María Mazzarello"
-  ];
-
   let buenosDiasData = [];
 
   const now = new Date();
@@ -1114,10 +1103,6 @@
     const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
     document.getElementById('calMonthTitle').innerText = `${monthNames[month]} ${year}`;
 
-    const nextBtn = document.getElementById('nextMonthBtn');
-    const isCurrentOrFutureMonth = (year > realToday.getFullYear()) || (year === realToday.getFullYear() && month >= realToday.getMonth());
-    nextBtn.disabled = isCurrentOrFutureMonth;
-
     const grid = document.getElementById('calendarGrid');
     grid.innerHTML = '';
 
@@ -1146,17 +1131,12 @@
       dayDiv.className = 'cal-day';
       dayDiv.innerText = day;
 
-      const isFuture = thisDate.getTime() > realToday.getTime();
       const isToday = thisDate.getTime() === realToday.getTime();
 
       if (isToday) dayDiv.classList.add('today');
 
-      if (isFuture) {
-        dayDiv.classList.add('disabled');
-      } else {
-        const hasContent = buenosDiasData.some(item => item.fecha === dayStr && item.etapa === currentActiveFilter);
-        if (hasContent) dayDiv.classList.add('has-content');
-      }
+      const hasContent = buenosDiasData.some(item => item.fecha === dayStr && item.etapa === currentActiveFilter);
+      if (hasContent) dayDiv.classList.add('has-content');
 
       if (dayStr === selectedDateStr) dayDiv.classList.add('selected');
 
@@ -1179,25 +1159,6 @@
 
     const clickedDate = new Date(y, m, d);
     const formattedDate = clickedDate.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
-
-    if (clickedDate.getTime() > realToday.getTime()) {
-      const citaDelDia = citasSalesianas[d % citasSalesianas.length];
-      panel.innerHTML = `
-        <div class="detail-header-divider">
-          <div class="detail-tags"><span class="detail-tag">${currentActiveFilter}</span></div>
-          <div class="detail-date">${formattedDate}</div>
-        </div>
-        <div class="empty-state">
-          <div style="font-size: 1.8rem; margin-bottom: 0.3rem;">🔒</div>
-          <p style="font-weight: 700; color: var(--text); margin-bottom: 1.2rem;">No disponible</p>
-          <div style="background: var(--bg); border-left: 3px solid var(--azul); padding: 0.9rem 1.1rem; border-radius: 8px; font-style: italic; color: var(--text-muted); font-size: 0.92rem; line-height: 1.45; text-align: left;">
-            ${citaDelDia}
-          </div>
-        </div>
-        <div></div>
-      `;
-      return;
-    }
 
     const item = buenosDiasData.find(item => item.fecha === dateStr && item.etapa === currentActiveFilter);
 
