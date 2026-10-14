@@ -611,6 +611,54 @@
     .role-tabs, .subtabs { flex-direction: column; }
     .cal-day { font-size: 0.8rem; }
   }
+
+  /* ─── Portada (como en el portal de utilidades, en azul: apartado «Pastoral»): cabecera solo con el logo,
+     franja con el curso y el botón de instalar, cartel, descripción y caja desplegable ─── */
+  header.solo-logo { display: flex; justify-content: center; padding: 12px 16px; background: var(--card); }
+  header.solo-logo .guide-logo { height: 64px; margin: 0; }
+  .franja { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; padding: 8px 16px; background: #009abb; color: #fff; }
+  .franja .quien { font-size: 13px; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,.25); }
+  .franja-acc { display: flex; gap: 8px; flex-wrap: wrap; margin-left: auto; }
+  .franja-btn { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,.75);
+    background: rgba(255,255,255,.14); color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.2); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+  .franja-btn:hover { background: #fff; color: #007791; text-shadow: none; }
+  .franja-btn[hidden] { display: none; }
+  .franja-btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .presenta { padding: 22px max(1.25rem, calc((100% - 1000px) / 2 + 1.25rem)); border-bottom: 2px solid rgba(0, 154, 187, .45); }
+  .presenta-sup { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 12px; }
+  .cartel { display: inline-block; background: rgba(0, 154, 187, .12); color: #007791; font-weight: 700; font-size: .78rem;
+    letter-spacing: .06em; text-transform: uppercase; padding: .3rem .8rem; border-radius: 999px; }
+  /* El cartel es también el camino de vuelta: Utilidades (portal) | Pastoral */
+  .cartel { display: inline-flex; align-items: center; gap: .45rem; }
+  .cartel a { display: inline-flex; align-items: center; gap: .3rem; color: inherit; text-decoration: none; border-radius: 4px; }
+  .cartel a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .cartel a:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+  .cartel svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .cartel .sep { opacity: .6; }
+  .presenta-cab { display: flex; align-items: center; gap: 16px; }
+  .presenta-ico { flex: none; width: 56px; height: 56px; border-radius: 14px; display: grid; place-items: center; background: rgba(0, 154, 187, .12); color: var(--azul); }
+  .presenta-ico svg { width: 30px; height: 30px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .presenta h1 { margin: 0 0 4px; font-size: 1.6rem; line-height: 1.2; color: var(--azul); }
+  .presenta-cab p { margin: 0; color: var(--text-muted); max-width: 70ch; }
+  .presenta-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; margin-top: 18px; align-items: start; }
+  .info-bloque { background: var(--card); border: 1px solid var(--border); border-radius: 12px; }
+  .info-bloque summary { list-style: none; display: flex; align-items: center; gap: 10px; padding: 12px 16px; cursor: pointer; font-weight: 700; }
+  .info-bloque summary::-webkit-details-marker { display: none; }
+  .info-bloque summary > svg { width: 20px; height: 20px; flex: none; fill: none; stroke: var(--azul); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .info-bloque summary > span { flex: 1; min-width: 0; }
+  .info-bloque summary small { display: block; font-weight: 500; font-size: .8rem; color: var(--text-muted); }
+  .info-bloque summary::after { content: ""; flex: none; width: 8px; height: 8px; border-right: 2px solid var(--text-muted); border-bottom: 2px solid var(--text-muted);
+    transform: rotate(45deg); margin: -4px 4px 0; transition: transform .15s; }
+  .info-bloque[open] summary::after { transform: rotate(-135deg); margin-top: 4px; }
+  .info-bloque summary:hover { color: var(--azul); }
+  .info-bloque ul { margin: 0; padding: 0 16px 14px 34px; color: var(--text-muted); font-size: .9rem; }
+  .info-bloque li + li { margin-top: 3px; }
+  .info-bloque b { color: var(--text); font-weight: 600; }
+  @media (max-width: 560px) {
+    header.solo-logo .guide-logo { height: 54px; }
+    .presenta-cab { align-items: flex-start; } .presenta h1 { font-size: 1.3rem; } .presenta-ico { width: 46px; height: 46px; }
+    .presenta-info { grid-template-columns: 1fr; }
+  }
 </style>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -619,9 +667,7 @@
 </head>
 <body>
 
-<div class="wrap">
-
-  <header class="page-head">
+<header class="solo-logo">
     <svg class="guide-logo" viewBox="160 635 670 215" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <style>
@@ -709,11 +755,39 @@
         <path class="st2" d="M624,727.2h2.6l5,16.6h-2.2l-1.2-4.3h-5.5l-1.2,4.3h-2.2l4.7-16.6h0ZM624.8,731.4l-1.7,6.3h4.5l-1.8-6.3c0,0-.2-.8-.5-2.2l-.2,1-.3,1.2h0Z"/>
       </g>
     </svg>
-    <span class="eyebrow">Equipo de Pastoral · Nervión</span>
-    <h1>Buenos Días</h1>
-    <p class="subtitle">Calendario y guías para el profesorado</p>
-    <div class="divider"></div>
-  </header>
+</header>
+<div class="franja">
+  <span class="quien" id="curso">Curso 2026-2027</span>
+  <div class="franja-acc">
+    <button type="button" class="franja-btn" id="instalar" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Instalar como app</button>
+  </div>
+</div>
+<section class="presenta">
+  <div class="presenta-sup"><div class="cartel" role="navigation" aria-label="Estás en">
+    <a href="https://claustro-utilidades.vercel.app/" title="Ir al portal de utilidades del profesorado"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7M5 10v10h14V10"/></svg>Utilidades</a>
+    <span class="sep" aria-hidden="true">|</span>
+    <a href="https://pastoral-claustro.vercel.app/" title="Ir a la web de Pastoral">Pastoral</a>
+  </div></div>
+  <div class="presenta-cab">
+    <span class="presenta-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span>
+    <div>
+      <h1>Buenos Días</h1>
+      <p>Calendario y guías de los Buenos Días por etapas.</p>
+    </div>
+  </div>
+  <div class="presenta-info">
+    <details class="info-bloque">
+      <summary><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c1.9.7 3.1 2.4 3.5 5.2"/></svg><span>Cualquier usuario <small>Acceso: sin inicio de sesión</small></span></summary>
+      <ul>
+        <li><b>Calendario:</b> elige la etapa (Infantil, Primaria, ESO y Bachillerato o CCFF) y consulta el Buenos Días de cada día.</li>
+        <li><b>Guías:</b> los pasos para los responsables de Pastoral y para el profesorado que elabora los Buenos Días.</li>
+      </ul>
+    </details>
+  </div>
+</section>
+
+<div class="wrap">
+
 
   <div id="section-buenosdias">
 
@@ -1210,6 +1284,26 @@
   }
 
   cargarDatosDesdeSheets();
+
+  // Curso escolar en la franja (cambia solo cada 1 de septiembre)
+  const anioCurso = new Date().getFullYear() - (new Date().getMonth() < 8 ? 1 : 0);
+  document.getElementById('curso').textContent = 'Curso ' + anioCurso + '-' + (anioCurso + 1);
+
+  // Botón «Instalar como app»: Chrome/Edge/Android usan el aviso nativo; si no, se explica cómo hacerlo.
+  (function () {
+    const btn = document.getElementById('instalar');
+    const instalada = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+    const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    let aviso = null;
+    btn.hidden = !!instalada;
+    window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); aviso = e; });
+    btn.addEventListener('click', async () => {
+      if (aviso) { aviso.prompt(); await aviso.userChoice; aviso = null; return; }
+      alert(ios ? 'Para instalarla: pulsa el botón Compartir y elige «Añadir a pantalla de inicio».'
+                : 'Para instalarla: abre el menú del navegador (⋮ o ⋯) y elige «Instalar aplicación» o «Añadir a pantalla de inicio».');
+    });
+    window.addEventListener('appinstalled', () => { btn.hidden = true; });
+  })();
 
   // PWA: registro del service worker (permite instalar la web como app)
   if ('serviceWorker' in navigator) {
