@@ -4,18 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Buenos días | Escuelas Salesianas María Auxiliadora · Nervión (Sevilla)</title>
-<meta property="og:title" content="Buenos días | Escuelas Salesianas María Auxiliadora · Nervión (Sevilla)">
-<meta property="og:type" content="website">
 <meta name="description" content="Calendario y guías de Buenos Días para el equipo de Pastoral y el profesorado de Salesianas Nervión">
 
 <!-- PWA: instalable en Android, iOS e iPadOS -->
 <link rel="manifest" href="manifest-profesores.json">
 <meta name="theme-color" content="#009abb">
-<link rel="apple-touch-icon" href="icon-profesores-180.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icon-profesores-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Buenos Días">
-<link rel="icon" href="favicon-profesores.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Escuelas Salesianas María Auxiliadora">
+<meta property="og:title" content="Buenos Días | Escuelas Salesianas María Auxiliadora · Nervión (Sevilla)">
+<meta name="twitter:title" content="Buenos Días | Escuelas Salesianas María Auxiliadora · Nervión (Sevilla)">
+<meta property="og:description" content="Calendario y guías de los Buenos Días por etapas para el profesorado y el equipo de Pastoral.">
+<meta name="twitter:description" content="Calendario y guías de los Buenos Días por etapas para el profesorado y el equipo de Pastoral.">
+<meta property="og:url" content="https://pastoral-bbdd.vercel.app/">
+<meta property="og:image" content="https://pastoral-bbdd.vercel.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Buenos Días · Escuelas Salesianas María Auxiliadora">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pastoral-bbdd.vercel.app/og-image.png">
 
 <style>
   :root {
@@ -206,6 +220,10 @@
     scrollbar-width: none;
   }
   .stages-main::-webkit-scrollbar { display: none; }
+  @media (max-width: 560px) {
+    .stages-main { display: grid; grid-template-columns: 1fr 1fr; overflow: visible; }
+    .stage-pill { min-width: 0; }
+  }
 
   .stage-pill {
     flex: 1;
